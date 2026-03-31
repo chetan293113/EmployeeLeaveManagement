@@ -1,0 +1,36 @@
+﻿@model EmployeeLeaveManagement.Models.LeaveRequest
+
+<div class="form-card">
+    <h2 class="form-title">Apply Leave</h2>
+
+    <form asp-action="Create" method="post">
+
+        <div class="form-group">
+            <label asp-for="EmployeeName"></label>
+            <input asp-for="EmployeeName" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="LeaveType"></label>
+            <input asp-for="LeaveType" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="FromDate"></label>
+            <input asp-for="FromDate" type="date" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ToDate"></label>
+            <input asp-for="ToDate" type="date" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn-modern btn-success">
+            Submit Leave Request
+        </button>
+
+        <a href="/" class="btn-modern" style="margin-left:10px;">
+            Back
+        </a>
+    </form>
+</div>

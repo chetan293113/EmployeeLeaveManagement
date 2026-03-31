@@ -1,0 +1,30 @@
+﻿@model IEnumerable<EmployeeLeaveManagement.Models.LeaveRequest>
+
+<div class="container-box">
+    <h2>Leave Requests</h2>
+
+    <p>
+        <a asp-action="Create" class="btn">+ Apply Leave</a>
+    </p>
+
+    <table>
+        <tr>
+            <th>Employee</th>
+            <th>Type</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Status</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.EmployeeName</td>
+                <td>@item.LeaveType</td>
+                <td>@item.FromDate.ToShortDateString()</td>
+                <td>@item.ToDate.ToShortDateString()</td>
+                <td>@item.Status</td>
+            </tr>
+        }
+    </table>
+</div>

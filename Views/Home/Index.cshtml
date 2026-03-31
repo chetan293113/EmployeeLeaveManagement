@@ -1,0 +1,101 @@
+﻿@using EmployeeLeaveManagement.Models
+
+@{
+    var employees = ViewBag.Employees as List<Employee>;
+    var leaveRequests = ViewBag.LeaveRequests as List<LeaveRequest>;
+}
+
+<div class="main-container">
+
+    <h1 class="dashboard-title">Employee Leave Management</h1>
+    <p class="dashboard-subtitle">
+        Manage employees, leave requests and approvals in one place.
+    </p>
+
+    <div style="display:flex; gap:15px; margin-bottom:30px; flex-wrap:wrap;">
+        <a href="/Employee/Create" class="btn-modern">+ Add Employee</a>
+        <a href="/LeaveRequest/Create" class="btn-modern">+ Apply Leave</a>
+        <a href="/Admin" class="btn-modern">Admin Portal</a>
+    </div>
+
+    <div class="card-box">
+        <h2 style="margin-bottom:20px;">Employees</h2>
+
+        <table class="table-modern">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (employees != null)
+                {
+                    @foreach (var emp in employees)
+                    {
+                        <tr>
+                            <td>@emp.Name</td>
+                            <td>@emp.Email</td>
+                            <td>@emp.Department</td>
+                            <td>
+                                <a href="/Employee/Delete/@emp.Id"
+                                   class="btn-modern btn-danger">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card-box">
+        <h2 style="margin-bottom:20px;">Leave Requests</h2>
+
+        <table class="table-modern">
+            <thead>
+                <tr>
+                    <th>Employee</th>
+                    <th>Leave Type</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (leaveRequests != null)
+                {
+                    @foreach (var leave in leaveRequests)
+                    {
+                        <tr>
+                            <td>@leave.EmployeeName</td>
+                            <td>@leave.LeaveType</td>
+                            <td>@leave.FromDate.ToShortDateString()</td>
+                            <td>@leave.ToDate.ToShortDateString()</td>
+                            <td>
+                                @if (leave.Status == "Pending")
+                                {
+                                    <span class="status-pending">Pending</span>
+                                }
+                                else if (leave.Status == "Approved")
+                                {
+                                    <span class="status-approved">Approved</span>
+                                }
+                                else
+                                {
+                                    <span class="status-rejected">Rejected</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<EmployeeLeaveManagement.Models.Employee>
+
+<div class="container-box">
+    <h2>Employees</h2>
+
+    <p>
+        <a asp-action="Create" class="btn">+ Add Employee</a>
+    </p>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+                <td>@item.Department</td>
+            </tr>
+        }
+    </table>
+</div>
